@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Coffee - Cafetería y Restaurante</title>
+    <style>
+        /* Estilos básicos para darle mejor presentación */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f5f0;
+            color: #333;
+        }
+        header {
+            background-color: #4a3b32;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+        nav {
+            background-color: #e0d5c1;
+            padding: 1rem;
+            text-align: center;
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #4a3b32;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        main {
+            padding: 2rem;
+            max-width: 800px;
+            margin: auto;
+        }
+        section {
+            background: white;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #4a3b32;
+            border-bottom: 2px solid #e0d5c1;
+            padding-bottom: 0.5rem;
+        }
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px dashed #ccc;
+        }
+        .btn {
+            padding: 8px 12px;
+            background-color: #4a3b32;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #332822;
+        }
+        footer {
+            background-color: #4a3b32;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Cloud Coffee</h1>
+        <p>El mejor código y el mejor café</p>
+    </header>
+
+    <nav>
+        <a href="#inicio">Inicio</a>
+        <a href="#menu">Nuestro Menú</a>
+        <a href="#promociones">Promociones</a>
+    </nav>
+
+    <main>
+        <!-- Sección de Inicio -->
+        <section id="inicio">
+            <h2>Bienvenidos</h2>
+            <p>Disfruta de una experiencia única con nuestros granos de especialidad y deliciosos platillos preparados al momento.</p>
+        </section>
+
+        <!-- Sección de Menú -->
+        <section id="menu">
+            <h2>Menú Principal</h2>
+            <div class="menu-item">
+                <span><strong>Capuchino Clásico</strong><br><small>Con espuma perfecta y un toque de canela.</small></span>
+                <span>$55.00</span>
+            </div>
+            <div class="menu-item">
+                <span><strong>Baguette de Jamón Serrano</strong><br><small>Pan artesanal, queso gouda y aderezo de la casa.</small></span>
+                <span>$95.00</span>
+            </div>
+            <div class="menu-item">
+                <span><strong>Cheesecake de Frutos Rojos</strong><br><small>Rebanada de pastel casero.</small></span>
+                <span>$65.00</span>
+            </div>
+        </section>
+
+        <!-- Sección de Promociones (Parte de la Actividad) -->
+        <section id="promociones">
+            <h2>Cálculo de Promociones</h2>
+            <p>Ingresa el costo de tu pedido para calcular tu descuento:</p>
+            
+            <input type="number" id="monto" placeholder="Monto total ($)" style="padding: 5px; width: 150px;">
+            
+            <select id="tipoDescuento" style="padding: 5px;">
+                <option value="0">Sin descuento</option>
+                <option value="0.10">Estudiante (10%)</option>
+                <option value="0.15">Cumpleaños (15%)</option>
+            </select>
+            
+            <button class="btn" onclick="calcularDescuento()">Calcular</button>
+            
+            <p id="resultado" style="font-weight: bold; margin-top: 15px; color: #4a3b32;"></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Cloud Coffee. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Script para calcular las promociones -->
+    <script>
+        function calcularDescuento() {
+            const monto = parseFloat(document.getElementById('monto').value);
+            const descuento = parseFloat(document.getElementById('tipoDescuento').value);
+            const resultado = document.getElementById('resultado');
+            
+            if (isNaN(monto) || monto <= 0) {
+                resultado.innerText = "Por favor, ingresa un monto válido mayor a 0.";
+                return;
+            }
+
+            const cantidadDescontada = monto * descuento;
+            const totalPagar = monto - cantidadDescontada;
+
+            if (descuento > 0) {
+                resultado.innerText = `Descuento aplicado: $${cantidadDescontada.toFixed(2)}. Total a pagar: $${totalPagar.toFixed(2)}`;
+            } else {
+                resultado.innerText = `Total a pagar: $${monto.toFixed(2)}`;
+            }
+        }
+    </script>
+
+</body>
+</html>
